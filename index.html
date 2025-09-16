@@ -11,1066 +11,1092 @@
     <link href="https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
-<style>
-    body {
-        margin: 0;
-        height: 100vh;
-        overflow-x: hidden; /* Evita scroll horizontal */
-    }
-
-    /* Panel principal*/
-    .main-panel {
-        width: 100%;
-        height: 70vh;
-        background: linear-gradient(to bottom, #7EC6FC, #DFF0FD, #a9d4f4);
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* Noise background effect */
-    .main-panel::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
-        background-repeat: repeat;
-        background-size: 182px;
-        opacity: 0.6;
-        pointer-events: none;
-    }
-
-    .blob {
-        position: absolute;
-        width: 300px;
-        height: 200px;
-        background: radial-gradient(circle at center, rgba(1, 27, 30, 0.6), rgba(255, 255, 255, 0));
-        border-radius: 50%;
-        filter: blur(50px);
-        animation: move 40s ease-in-out infinite;
-    }
-
-    .data-points {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-    }
-
-    .data-point {
-        position: absolute;
-        width: 3px;
-        height: 3px;
-        background-color: #022a2d;
-        border-radius: 50%;
-        opacity: 0.7;
-        transition: transform 3s ease-in-out;
-    }
-
-    @keyframes dataPointMovement {
-        0%, 100% {
-            transform: translate(0, 0);
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow-x: hidden;
+            /* Evita scroll horizontal */
         }
-        50% {
-            transform: translate(5px, -5px);
-        }
-    }
 
-    @keyframes move {
-        0%, 100% {
-            transform: translate(0, 0);
-        }
-        25% {
-            transform: translate(calc(100vw - 200px), -100px);
-        }
-        50% {
-            transform: translate(0, calc(45vh - 200px));
-        }
-        75% {
-            transform: translate(calc(100vw - 200px), calc(45vh - 200px));
-        }
-    }
-
-    /* Controles */
-    .controles {
-        margin-top: 20px;
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        justify-content: center;
-        flex-wrap: wrap; /* Permite que los botones se ajusten en móviles */
-    }
-
-    .btn {
-        background: transparent;
-        border: 1px solid transparent;
-        color: black;
-        font-family: 'Brawler', serif;
-        font-size: 16px;
-        padding: 8px 12px;
-        transition: border-color 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .btn:hover {
-        border-color: black;
-    }
-
-    .btn.sun:hover {
-        scale: 1.1;
-        border: 0;
-        border-color: transparent;
-    }
-
-    .btn-icon {
-        width: 24px;
-        height: 24px;
-        filter: brightness(0);
-    }
-
-    /* Dev info */
-    .dev-info {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 100px;
-        margin-left: 50px;
-        gap: 20px;
-    }
-
-    .titulo {
-        font-family: 'Roboto Serif', serif;
-        font-size: 50px;
-        font-weight: lighter;
-        color: black;
-        text-align: left;
-        margin: 0;
-    }
-
-    .descripcion {
-        font-family: 'Roboto Serif', serif;
-        font-size: 30px;
-        color: black;
-        text-align: left;
-        margin: 0;
-        line-height: 1.2;
-    }
-
-    .highlight {
-        color: #2A5EBA;
-    }
-
-    .btn-contacto {
-        background: transparent;
-        border: 1px solid black;
-        color: black;
-        font-family: 'Brawler', serif;
-        font-size: 16px;
-        padding: 12px 24px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .info-contacto {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .btn-lkdn {
-        background: transparent;
-        border: none;
-    }
-
-    .btn-lkdn:hover {
-        transform: scale(1.05);
-        transition: all 0.3s ease;
-    }
-
-    .btn-contacto:hover {
-        background: black;
-        color: white;
-    }
-
-    /* Experiencia laboral */
-    .experiencia {
-        background: white;
-        width: 100%;
-        padding: 40px;
-        box-sizing: border-box;
-    }
-
-    .header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 30px;
-    }
-
-    .header-icon {
-        width: 32px;
-        height: 32px;
-        filter: brightness(0);
-    }
-
-    .header-title {
-        font-family: 'Brawler', serif;
-        font-size: 36px;
-        font-weight: normal;
-        color: black;
-        margin: 0;
-    }
-
-    .content {
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
-    }
-
-    .timeline {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .line-marker {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-    }
-
-    .line {
-        width: 3px;
-        height: 225px;
-        background: black;
-        position: relative;
-    }
-
-    .marker {
-        width: 15px;
-        height: 15px;
-        background: #7EC6FC;
-        border-radius: 50%;
-        position: absolute;
-        top: 15px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .job-info {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .job-title {
-        font-family: 'Onest', sans-serif;
-        font-weight: 700;
-        font-size: 28px;
-        color: black;
-        margin: 0;
-    }
-
-    .company {
-        font-family: 'Onest', sans-serif;
-        font-weight: 600;
-        font-size: 20px;
-        color: #53595E;
-        margin: 0;
-    }
-
-    .year {
-        font-family: 'Onest', sans-serif;
-        font-weight: 500;
-        font-size: 20px;
-        color: #53595E;
-        margin: 0;
-    }
-
-    .description-section {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        max-width: 600px;
-    }
-
-    .description {
-        font-family: 'Onest', sans-serif;
-        font-weight: 400;
-        font-size: 18px;
-        color: black;
-        line-height: 1.4;
-        margin: 0;
-    }
-
-    .btn-proyecto {
-        background: transparent;
-        border: 1px solid black;
-        color: black;
-        font-family: 'Brawler', serif;
-        font-size: 16px;
-        padding: 10px 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        align-self: flex-start;
-    }
-
-    .btn-proyecto:hover {
-        background: black;
-        color: white;
-    }
-
-    /* Proyectos - Estilos modificados */
-    .proyectos {
-        background: #7EC6FC;
-        width: 100%;
-        padding: 40px;
-        margin-top: 40px;
-        box-sizing: border-box;
-        position: relative;
-        z-index: 0;
-    }
-
-    /* Noise background effect */
-    .proyectos::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
-        background-repeat: repeat;
-        background-size: 182px;
-        opacity: 0.6;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    .proyectos-header {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 40px;
-    }
-
-    .coleccion-proyectos {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 30px;
-        width: 100%;
-    }
-
-    .card-proyecto {
-        background: rgba(255, 255, 255, 0.7);
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        padding: 20px;
-        gap: 15px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card-proyecto:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    .image-container {
-        width: 100%;
-        height: 300px;
-        overflow: hidden;
-        border-radius: 8px;
-    }
-
-    .proyecto-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-    }
-
-    .card-proyecto:hover .proyecto-image {
-        transform: scale(1.05);
-    }
-
-    .proyecto-content {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .proyecto-titulo {
-        font-family: 'Roboto Serif', serif;
-        font-weight: 600;
-        font-size: 22px;
-        color: black;
-        margin: 0;
-    }
-
-    .etiquetas {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .etiqueta {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        padding: 6px 10px;
-        border-radius: 20px;
-        box-sizing: border-box;
-    }
-
-    .etiqueta.nextjs {
-        background: black;
-    }
-
-    .etiqueta.appwrite {
-        background: #F98C8C;
-    }
-
-    .etiqueta.react {
-        background: #08314D;
-    }
-
-    .etiqueta.express {
-        background: #000;
-    }
-
-    .etiqueta.nest {
-        background: #000;
-    }
-
-    .etiqueta.react_router {
-        background: transparent;
-        border: 0.2px solid #000;
-    }
-
-    .etiqueta-icon {
-        width: 16px;
-        height: 16px;
-        object-fit: contain;
-    }
-
-    .etiqueta-icon.react {
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
-    }
-
-    .etiqueta-icon.kotlin {
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
-    }
-
-    .etiqueta-icon.laravel {
-        width: 20px;
-        height: 20px;
-        object-fit: contain;
-    }
-
-    .etiqueta-text {
-        font-family: 'Brawler', serif;
-        font-weight: 400;
-        font-size: 12px;
-        color: white;
-    }
-
-    .etiqueta-text.react_router {
-        color: black;
-    }
-
-    .proyecto-descripcion {
-        font-family: 'Brawler', serif;
-        font-weight: 400;
-        font-size: 14px;
-        color: #333;
-        line-height: 1.5;
-        margin: 0;
-    }
-
-    .botones {
-        display: flex;
-        gap: 12px;
-        margin-top: 10px;
-    }
-
-    .boton {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-        padding: 8px 16px;
-        border-radius: 4px;
-        box-sizing: border-box;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .boton.code {
-        background: black;
-    }
-
-    .boton.preview {
-        background: transparent;
-        border: 1px solid black;
-    }
-
-    .boton-icon {
-        width: 16px;
-        height: 16px;
-        object-fit: contain;
-    }
-
-    .boton-text {
-        font-family: 'Brawler', serif;
-        font-weight: 400;
-        font-size: 14px;
-    }
-
-    .boton.code .boton-text {
-        color: white;
-    }
-
-    .boton.preview .boton-text {
-        color: black;
-    }
-
-    .boton:hover {
-        opacity: 0.9;
-        transform: translateY(-2px);
-    }
-
-    /* Hackathon section */
-    .background {
-        border-radius: 2px;
-        width: 630px;
-        height: 340px;
-        margin-bottom: 30px;
-        background: #02021e;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        position: relative;
-        z-index: 1;
-    }
-
-    .top-container {
-        z-index: 10;
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .Hackathon-logo {
-        width: 40%;
-        margin: 20px;
-    }
-
-    .datos-concurso {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        width: 40%;
-        margin: 20px;
-    }
-
-    .dato {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid white;
-        border-radius: 2px;
-        background-color: transparent;
-        color: white;
-        font-family: 'Onest', serif;
-        text-align: center;
-        min-width: 60px;
-        margin-bottom: 10px;
-    }
-
-    .dato .numero {
-        font-size: 1.5em;
-        font-weight: 700;
-    }
-
-    .dato .texto {
-        font-size: 0.9em;
-    }
-
-    .ball {
-        position: absolute;
-        z-index: 5;
-        width: 20vmin;
-        height: 20vmin;
-        border-radius: 50%;
-        backface-visibility: hidden;
-        animation: move linear infinite;
-    }
-
-    .ball:nth-child(odd) {
-        color: #006D5B;
-    }
-
-    .ball:nth-child(even) {
-        color: #FF6F61;
-    }
-
-    .ball:nth-child(1) {
-        top: 77%;
-        left: 88%;
-        animation-duration: 40s;
-        animation-delay: -3s;
-        transform-origin: 16vw -2vh;
-        box-shadow: 40vmin 0 5.703076368487546vmin currentColor;
-    }
-
-    .ball:nth-child(2) {
-        top: 42%;
-        left: 2%;
-        animation-duration: 53s;
-        animation-delay: -29s;
-        transform-origin: -19vw 21vh;
-        box-shadow: -40vmin 0 5.17594621519026vmin currentColor;
-    }
-
-    .ball:nth-child(3) {
-        top: 28%;
-        left: 18%;
-        animation-duration: 49s;
-        animation-delay: -8s;
-        transform-origin: -22vw 3vh;
-        box-shadow: 40vmin 0 5.248179047256236vmin currentColor;
-    }
-
-    .ball:nth-child(4) {
-        top: 50%;
-        left: 79%;
-        animation-duration: 26s;
-        animation-delay: -21s;
-        transform-origin: -17vw -6vh;
-        box-shadow: 40vmin 0 5.279749632220298vmin currentColor;
-    }
-
-    .ball:nth-child(5) {
-        top: 46%;
-        left: 15%;
-        animation-duration: 36s;
-        animation-delay: -40s;
-        transform-origin: 4vw 0vh;
-        box-shadow: -40vmin 0 5.964309466052033vmin currentColor;
-    }
-
-    .ball:nth-child(6) {
-        top: 77%;
-        left: 16%;
-        animation-duration: 31s;
-        animation-delay: -10s;
-        transform-origin: 18vw 4vh;
-        box-shadow: 40vmin 0 5.178483653434181vmin currentColor;
-    }
-
-    .ball:nth-child(7) {
-        top: 22%;
-        left: 17%;
-        animation-duration: 55s;
-        animation-delay: -6s;
-        transform-origin: 1vw -23vh;
-        box-shadow: -40vmin 0 5.703026794398318vmin currentColor;
-    }
-
-    .ball:nth-child(8) {
-        top: 41%;
-        left: 47%;
-        animation-duration: 43s;
-        animation-delay: -28s;
-        transform-origin: 25vw -3vh;
-        box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
-    }
-
-    .bottom-container {
-        display: flex;
-        z-index: 10;
-        align-items: flex-start;
-    }
-
-    .puesto {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        color: black;
-        font-family: 'Onest', serif;
-        background-color: white;
-        opacity: 0.6;
-        align-self: flex-start;
-        margin-left: 22px;
-        margin-top: 0px;
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 3px;
-    }
-
-    .puesto-row {
-        display: flex;
-        align-items: baseline;
-    }
-
-    .puesto .numero {
-        font-size: 4em;
-        font-weight: 700;
-    }
-
-    .puesto sup {
-        font-size: 0.6em;
-        vertical-align: super;
-    }
-
-    .puesto .texto {
-        font-size: 1.8em;
-        margin-left: 5px;
-    }
-
-    .puesto .categoria {
-        font-size: 0.8em;
-        margin-left: 1px;
-        margin-bottom: 5px;
-        font-style: italic;
-        color: black;
-    }
-
-    .ir_hack {
-        background-color: transparent;
-        margin-left: 100px;
-        color: white;
-        font-family: 'Onest', serif;
-        padding: 10px;
-        border-radius: 2px;
-        border: 1px solid white;
-    }
-
-    .ir_hack:hover {
-        padding-right: 26px;
-        padding-left: 26px;
-        transition: 120ms;
-    }
-
-    /* RESPONSIVE STYLES */
-    @media (max-width: 1200px) {
-        .background {
-            width: 100%;
-            max-width: 630px;
-        }
-    }
-
-    @media (max-width: 992px) {
-        .titulo {
-            font-size: 42px;
-        }
-        
-        .descripcion {
-            font-size: 26px;
-        }
-        
-        .content {
-            flex-direction: column;
-        }
-        
-        .timeline {
-            margin-bottom: 20px;
-        }
-        
-        .line {
-            height: 180px;
-        }
-        
-        .coleccion-proyectos {
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        }
-        
-        .ir_hack {
-            margin-left: 50px;
-        }
-    }
-
-    @media (max-width: 768px) {
+        /* Panel principal*/
         .main-panel {
-            height: 60vh;
-        }
-        
-        .dev-info {
-            margin-top: 60px;
-            margin-left: 30px;
-            margin-right: 30px;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .titulo {
-            font-size: 36px;
-        }
-        
-        .descripcion {
-            font-size: 22px;
-        }
-        
-        .experiencia, .proyectos {
-            padding: 30px 20px;
-        }
-        
-        .header-title {
-            font-size: 30px;
-        }
-        
-        .job-title {
-            font-size: 24px;
-        }
-        
-        .company, .year {
-            font-size: 18px;
-        }
-        
-        .description {
-            font-size: 16px;
-        }
-        
-        .coleccion-proyectos {
-            grid-template-columns: 1fr;
-        }
-        
-        .card-proyecto {
-            padding: 15px;
-        }
-        
-        .proyecto-titulo {
-            font-size: 20px;
-        }
-        
-        .image-container {
-            height: 220px;
-        }
-        
-        .botones {
-            flex-direction: column;
-        }
-        
-        .boton {
             width: 100%;
+            height: 70vh;
+            background: linear-gradient(to bottom, #7EC6FC, #DFF0FD, #a9d4f4);
+            position: relative;
+            overflow: hidden;
         }
-        
-        .top-container {
-            flex-direction: column;
+
+        /* Noise background effect */
+        .main-panel::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 182px;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(1, 27, 30, 0.6), rgba(255, 255, 255, 0));
+            border-radius: 50%;
+            filter: blur(50px);
+            animation: move 40s ease-in-out infinite;
+        }
+
+        .data-points {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .data-point {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: #022a2d;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: transform 3s ease-in-out;
+        }
+
+        @keyframes dataPointMovement {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(5px, -5px);
+            }
+        }
+
+        @keyframes move {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(calc(100vw - 200px), -100px);
+            }
+
+            50% {
+                transform: translate(0, calc(45vh - 200px));
+            }
+
+            75% {
+                transform: translate(calc(100vw - 200px), calc(45vh - 200px));
+            }
+        }
+
+        /* Controles */
+        .controles {
+            margin-top: 20px;
+            display: flex;
             align-items: center;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* Permite que los botones se ajusten en móviles */
         }
-        
-        .Hackathon-logo, .datos-concurso {
-            width: 80%;
-            margin: 10px 0;
-        }
-        
-        .datos-concurso {
-            flex-direction: row;
-            justify-content: space-around;
-            gap: 10px;
-        }
-        
-        .dato {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        
-        .bottom-container {
-            flex-direction: column;
+
+        .btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: black;
+            font-family: 'Brawler', serif;
+            font-size: 16px;
+            padding: 8px 12px;
+            transition: border-color 0.3s ease;
+            display: flex;
             align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            border-color: black;
+        }
+
+        .btn.sun:hover {
+            scale: 1.1;
+            border: 0;
+            border-color: transparent;
+        }
+
+        .btn-icon {
+            width: 24px;
+            height: 24px;
+            filter: brightness(0);
+        }
+
+        /* Dev info */
+        .dev-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 100px;
+            margin-left: 50px;
             gap: 20px;
         }
-        
-        .puesto {
-            margin-left: 0;
-            align-self: center;
-        }
-        
-        .ir_hack {
-            margin-left: 0;
-            margin-top: 10px;
-        }
-        
-        .background {
-            height: auto;
-            padding-bottom: 20px;
-        }
-    }
 
-    @media (max-width: 576px) {
-        .main-panel {
-            height: 50vh;
-        }
-        
-        .dev-info {
-            margin-top: 40px;
-            margin-left: 20px;
-            margin-right: 20px;
-            gap: 15px;
-        }
-        
         .titulo {
-            font-size: 28px;
+            font-family: 'Roboto Serif', serif;
+            font-size: 50px;
+            font-weight: lighter;
+            color: black;
+            text-align: left;
+            margin: 0;
         }
-        
+
         .descripcion {
-            font-size: 18px;
+            font-family: 'Roboto Serif', serif;
+            font-size: 30px;
+            color: black;
+            text-align: left;
+            margin: 0;
+            line-height: 1.2;
         }
-        
+
+        .highlight {
+            color: #2A5EBA;
+        }
+
         .btn-contacto {
-            padding: 10px 20px;
-            font-size: 14px;
+            background: transparent;
+            border: 1px solid black;
+            color: black;
+            font-family: 'Brawler', serif;
+            font-size: 16px;
+            padding: 12px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        
-        .controles {
+
+        .info-contacto {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-lkdn {
+            background: transparent;
+            border: none;
+        }
+
+        .btn-lkdn:hover {
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .btn-contacto:hover {
+            background: black;
+            color: white;
+        }
+
+        /* Experiencia laboral */
+        .experiencia {
+            background: white;
+            width: 100%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
             gap: 15px;
+            margin-bottom: 30px;
         }
-        
-        .btn {
-            font-size: 14px;
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0);
+        }
+
+        .header-title {
+            font-family: 'Brawler', serif;
+            font-size: 36px;
+            font-weight: normal;
+            color: black;
+            margin: 0;
+        }
+
+        .content {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .timeline {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .line-marker {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .line {
+            width: 3px;
+            height: 225px;
+            background: black;
+            position: relative;
+        }
+
+        .marker {
+            width: 15px;
+            height: 15px;
+            background: #7EC6FC;
+            border-radius: 50%;
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .job-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .job-title {
+            font-family: 'Onest', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: black;
+            margin: 0;
+        }
+
+        .company {
+            font-family: 'Onest', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #53595E;
+            margin: 0;
+        }
+
+        .year {
+            font-family: 'Onest', sans-serif;
+            font-weight: 500;
+            font-size: 20px;
+            color: #53595E;
+            margin: 0;
+        }
+
+        .description-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+        }
+
+        .description {
+            font-family: 'Onest', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: black;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .btn-proyecto {
+            background: transparent;
+            border: 1px solid black;
+            color: black;
+            font-family: 'Brawler', serif;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .btn-proyecto:hover {
+            background: black;
+            color: white;
+        }
+
+        /* Proyectos - Estilos modificados */
+        .proyectos {
+            background: #7EC6FC;
+            width: 100%;
+            padding: 40px;
+            margin-top: 40px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Noise background effect */
+        .proyectos::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 182px;
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .proyectos-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .logros-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .coleccion-proyectos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .card-proyecto {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-proyecto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .proyecto-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .card-proyecto:hover .proyecto-image {
+            transform: scale(1.05);
+        }
+
+        .proyecto-content {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .proyecto-titulo {
+            font-family: 'Roboto Serif', serif;
+            font-weight: 600;
+            font-size: 22px;
+            color: black;
+            margin: 0;
+        }
+
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .etiqueta {
+            display: flex;
+            align-items: center;
+            gap: 5px;
             padding: 6px 10px;
+            border-radius: 20px;
+            box-sizing: border-box;
         }
-        
-        .btn-icon {
+
+        .etiqueta.nextjs {
+            background: black;
+        }
+
+        .etiqueta.appwrite {
+            background: #F98C8C;
+        }
+
+        .etiqueta.react {
+            background: #08314D;
+        }
+
+        .etiqueta.express {
+            background: #000;
+        }
+
+        .etiqueta.nest {
+            background: #000;
+        }
+
+        .etiqueta.react_router {
+            background: transparent;
+            border: 0.2px solid #000;
+        }
+
+        .etiqueta-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+        .etiqueta-icon.react {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .etiqueta-icon.kotlin {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .etiqueta-icon.laravel {
             width: 20px;
             height: 20px;
+            object-fit: contain;
         }
-        
-        .header {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-        }
-        
-        .header-title {
-            font-size: 26px;
-        }
-        
-        .job-title {
-            font-size: 20px;
-        }
-        
-        .company, .year {
-            font-size: 16px;
-        }
-        
-        .line {
-            height: 160px;
-        }
-        
-        .proyectos-header {
-            flex-direction: column;
-            text-align: center;
-            gap: 10px;
-        }
-        
-        .image-container {
-            height: 180px;
-        }
-        
-        .proyecto-titulo {
-            font-size: 18px;
-        }
-        
-        .proyecto-descripcion {
-            font-size: 13px;
-        }
-        
-        .etiqueta {
-            padding: 4px 8px;
-        }
-        
-        .etiqueta-text {
-            font-size: 10px;
-        }
-        
-        .puesto .numero {
-            font-size: 3em;
-        }
-        
-        .puesto .texto {
-            font-size: 1.4em;
-        }
-        
-        .puesto .categoria {
-            font-size: 0.7em;
-        }
-        
-        .dato .numero {
-            font-size: 1.2em;
-        }
-        
-        .dato .texto {
-            font-size: 0.7em;
-        }
-        
-        .ir_hack {
-            font-size: 14px;
-            padding: 8px;
-        }
-    }
 
-    @media (max-width: 400px) {
-        .titulo {
-            font-size: 24px;
+        .etiqueta-text {
+            font-family: 'Brawler', serif;
+            font-weight: 400;
+            font-size: 12px;
+            color: white;
         }
-        
-        .descripcion {
-            font-size: 16px;
+
+        .etiqueta-text.react_router {
+            color: black;
         }
-        
-        .info-contacto {
+
+        .proyecto-descripcion {
+            font-family: 'Brawler', serif;
+            font-weight: 400;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .botones {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .boton {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .boton.code {
+            background: black;
+        }
+
+        .boton.preview {
+            background: transparent;
+            border: 1px solid black;
+        }
+
+        .boton-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+        }
+
+        .boton-text {
+            font-family: 'Brawler', serif;
+            font-weight: 400;
+            font-size: 14px;
+        }
+
+        .boton.code .boton-text {
+            color: white;
+        }
+
+        .boton.preview .boton-text {
+            color: black;
+        }
+
+        .boton:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Hackathon section */
+        .background {
+            border-radius: 2px;
+            width: 630px;
+            height: 340px;
+            margin-bottom: 30px;
+            background: #02021e;
+            overflow: hidden;
+            display: flex;
             flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 1;
         }
-        
-        .coleccion-proyectos {
-            grid-template-columns: 1fr;
+
+        .top-container {
+            z-index: 10;
+            display: flex;
+            align-items: flex-start;
         }
-        
+
+        .Hackathon-logo {
+            width: 40%;
+            margin: 20px;
+        }
+
         .datos-concurso {
+            display: flex;
             flex-direction: column;
+            justify-content: flex-start;
+            width: 40%;
+            margin: 20px;
         }
-        
+
         .dato {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid white;
+            border-radius: 2px;
+            background-color: transparent;
+            color: white;
+            font-family: 'Onest', serif;
+            text-align: center;
+            min-width: 60px;
             margin-bottom: 10px;
         }
-    }
 
-    @keyframes move {
-        100% {
-            transform: translate3d(0, 0, 1px) rotate(360deg);
+        .dato .numero {
+            font-size: 1.5em;
+            font-weight: 700;
         }
-    }
-</style>
+
+        .dato .texto {
+            font-size: 0.9em;
+        }
+
+        .ball {
+            position: absolute;
+            z-index: 5;
+            width: 20vmin;
+            height: 20vmin;
+            border-radius: 50%;
+            backface-visibility: hidden;
+            animation: move linear infinite;
+        }
+
+        .ball:nth-child(odd) {
+            color: #006D5B;
+        }
+
+        .ball:nth-child(even) {
+            color: #FF6F61;
+        }
+
+        .ball:nth-child(1) {
+            top: 77%;
+            left: 88%;
+            animation-duration: 40s;
+            animation-delay: -3s;
+            transform-origin: 16vw -2vh;
+            box-shadow: 40vmin 0 5.703076368487546vmin currentColor;
+        }
+
+        .ball:nth-child(2) {
+            top: 42%;
+            left: 2%;
+            animation-duration: 53s;
+            animation-delay: -29s;
+            transform-origin: -19vw 21vh;
+            box-shadow: -40vmin 0 5.17594621519026vmin currentColor;
+        }
+
+        .ball:nth-child(3) {
+            top: 28%;
+            left: 18%;
+            animation-duration: 49s;
+            animation-delay: -8s;
+            transform-origin: -22vw 3vh;
+            box-shadow: 40vmin 0 5.248179047256236vmin currentColor;
+        }
+
+        .ball:nth-child(4) {
+            top: 50%;
+            left: 79%;
+            animation-duration: 26s;
+            animation-delay: -21s;
+            transform-origin: -17vw -6vh;
+            box-shadow: 40vmin 0 5.279749632220298vmin currentColor;
+        }
+
+        .ball:nth-child(5) {
+            top: 46%;
+            left: 15%;
+            animation-duration: 36s;
+            animation-delay: -40s;
+            transform-origin: 4vw 0vh;
+            box-shadow: -40vmin 0 5.964309466052033vmin currentColor;
+        }
+
+        .ball:nth-child(6) {
+            top: 77%;
+            left: 16%;
+            animation-duration: 31s;
+            animation-delay: -10s;
+            transform-origin: 18vw 4vh;
+            box-shadow: 40vmin 0 5.178483653434181vmin currentColor;
+        }
+
+        .ball:nth-child(7) {
+            top: 22%;
+            left: 17%;
+            animation-duration: 55s;
+            animation-delay: -6s;
+            transform-origin: 1vw -23vh;
+            box-shadow: -40vmin 0 5.703026794398318vmin currentColor;
+        }
+
+        .ball:nth-child(8) {
+            top: 41%;
+            left: 47%;
+            animation-duration: 43s;
+            animation-delay: -28s;
+            transform-origin: 25vw -3vh;
+            box-shadow: 40vmin 0 5.196265905749415vmin currentColor;
+        }
+
+        .bottom-container {
+            display: flex;
+            z-index: 10;
+            align-items: flex-start;
+        }
+
+        .puesto {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: black;
+            font-family: 'Onest', serif;
+            background-color: white;
+            opacity: 0.6;
+            align-self: flex-start;
+            margin-left: 22px;
+            margin-top: 0px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-radius: 3px;
+        }
+
+        .puesto-row {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .puesto .numero {
+            font-size: 4em;
+            font-weight: 700;
+        }
+
+        .puesto sup {
+            font-size: 0.6em;
+            vertical-align: super;
+        }
+
+        .puesto .texto {
+            font-size: 1.8em;
+            margin-left: 5px;
+        }
+
+        .puesto .categoria {
+            font-size: 0.8em;
+            margin-left: 1px;
+            margin-bottom: 5px;
+            font-style: italic;
+            color: black;
+        }
+
+        .ir_hack {
+            background-color: transparent;
+            margin-left: 100px;
+            color: white;
+            font-family: 'Onest', serif;
+            padding: 10px;
+            border-radius: 2px;
+            border: 1px solid white;
+        }
+
+        .ir_hack:hover {
+            padding-right: 26px;
+            padding-left: 26px;
+            transition: 120ms;
+        }
+
+        /* RESPONSIVE STYLES */
+        @media (max-width: 1200px) {
+            .background {
+                width: 100%;
+                max-width: 630px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .titulo {
+                font-size: 42px;
+            }
+
+            .descripcion {
+                font-size: 26px;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .timeline {
+                margin-bottom: 20px;
+            }
+
+            .line {
+                height: 180px;
+            }
+
+            .coleccion-proyectos {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            }
+
+            .ir_hack {
+                margin-left: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-panel {
+                height: 60vh;
+            }
+
+            .dev-info {
+                margin-top: 60px;
+                margin-left: 30px;
+                margin-right: 30px;
+                align-items: center;
+                text-align: center;
+            }
+
+            .titulo {
+                font-size: 36px;
+            }
+
+            .descripcion {
+                font-size: 22px;
+            }
+
+            .experiencia,
+            .proyectos {
+                padding: 30px 20px;
+            }
+
+            .header-title {
+                font-size: 30px;
+            }
+
+            .job-title {
+                font-size: 24px;
+            }
+
+            .company,
+            .year {
+                font-size: 18px;
+            }
+
+            .description {
+                font-size: 16px;
+            }
+
+            .coleccion-proyectos {
+                grid-template-columns: 1fr;
+            }
+
+            .card-proyecto {
+                padding: 15px;
+            }
+
+            .proyecto-titulo {
+                font-size: 20px;
+            }
+
+            .image-container {
+                height: 220px;
+            }
+
+            .botones {
+                flex-direction: column;
+            }
+
+            .boton {
+                width: 100%;
+            }
+
+            .top-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .Hackathon-logo,
+            .datos-concurso {
+                width: 80%;
+                margin: 10px 0;
+            }
+
+            .datos-concurso {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 10px;
+            }
+
+            .dato {
+                flex: 1;
+                margin-bottom: 0;
+            }
+
+            .bottom-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .puesto {
+                margin-left: 0;
+                align-self: center;
+            }
+
+            .ir_hack {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .background {
+                height: auto;
+                padding-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-panel {
+                height: 50vh;
+            }
+
+            .dev-info {
+                margin-top: 40px;
+                margin-left: 20px;
+                margin-right: 20px;
+                gap: 15px;
+            }
+
+            .titulo {
+                font-size: 28px;
+            }
+
+            .descripcion {
+                font-size: 18px;
+            }
+
+            .btn-contacto {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .controles {
+                gap: 15px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 6px 10px;
+            }
+
+            .btn-icon {
+                width: 20px;
+                height: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .header-title {
+                font-size: 26px;
+            }
+
+            .job-title {
+                font-size: 20px;
+            }
+
+            .company,
+            .year {
+                font-size: 16px;
+            }
+
+            .line {
+                height: 160px;
+            }
+
+            .proyectos-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .image-container {
+                height: 180px;
+            }
+
+            .proyecto-titulo {
+                font-size: 18px;
+            }
+
+            .proyecto-descripcion {
+                font-size: 13px;
+            }
+
+            .etiqueta {
+                padding: 4px 8px;
+            }
+
+            .etiqueta-text {
+                font-size: 10px;
+            }
+
+            .puesto .numero {
+                font-size: 3em;
+            }
+
+            .puesto .texto {
+                font-size: 1.4em;
+            }
+
+            .puesto .categoria {
+                font-size: 0.7em;
+            }
+
+            .dato .numero {
+                font-size: 1.2em;
+            }
+
+            .dato .texto {
+                font-size: 0.7em;
+            }
+
+            .ir_hack {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .titulo {
+                font-size: 24px;
+            }
+
+            .descripcion {
+                font-size: 16px;
+            }
+
+            .info-contacto {
+                flex-direction: column;
+            }
+
+            .coleccion-proyectos {
+                grid-template-columns: 1fr;
+            }
+
+            .datos-concurso {
+                flex-direction: column;
+            }
+
+            .dato {
+                margin-bottom: 10px;
+            }
+        }
+
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
+    </style>
 </head>
 
 <body>
     <div class="main-panel">
         <div class="controles">
             <button class="btn" onclick="scrollToExperiencia()">Experience</button>
+            <button class="btn" onclick="scrollToLogros()">Achievements</button>
             <button class="btn" onclick="scrollToProyectos()">Proyects</button>
-            <button class="btn sun">
-                <img src="images/sun.svg" alt="Mode" class="btn-icon">
+
+            <!--
+            <button class="btn sun">  
+              <img src="images/sun.svg" alt="Mode" class="btn-icon">  
             </button>
+            -->
         </div>
+
 
         <div class="dev-info">
             <h1 class="titulo">Hello, I’m Manuel Rua</h1>
@@ -1080,8 +1106,9 @@
             </p>
             <div class="info-contacto">
                 <button class="btn-contacto" onclick="sendEmail()">Contact Me</button>
-                <button class="btn-lkdn" onclick="window.open('https://www.linkedin.com/in/juan-manuel-rúa-echalar-4b0306242', '_blank')"> <img src="images/linkedin_negro.png" alt="boton a linkedin"
-                        style="width: 40px;"></button>
+                <button class="btn-lkdn"
+                    onclick="window.open('https://www.linkedin.com/in/juan-manuel-rúa-echalar-4b0306242', '_blank')">
+                    <img src="images/linkedin_negro.png" alt="boton a linkedin" style="width: 40px;"></button>
             </div>
 
         </div>
@@ -1111,15 +1138,20 @@
 
             <div class="description-section">
                 <p class="description">
-                    I was part of the development team for the official website of the CCBOL 2024 (International Congress of Computer Science). I was assigned to the backend side, where together with my team we developed the logic for login, authentication, certificates, conference attendance, food pickup, and more. The event hosted more than 800 people with different types of users: participant, speaker, volunteer.
+                    I was part of the development team for the official website of the CCBOL 2024 (International
+                    Congress of Computer Science). I was assigned to the backend side, where together with my team we
+                    developed the logic for login, authentication, certificates, conference attendance, food pickup, and
+                    more. The event hosted more than 800 people with different types of users: participant, speaker,
+                    volunteer.
                 </p>
-                <button class="btn-proyecto" onclick="window.open('https://ccbol2024.usfx.bo', '_blank')">View Project</button>
+                <button class="btn-proyecto" onclick="window.open('https://ccbol2024.usfx.bo', '_blank')">View
+                    Project</button>
             </div>
         </div>
     </div>
 
     <div class="proyectos" id="proyectos">
-        <div class="proyectos-header">
+        <div class="logros-header" id="logros-header">
             <img src="images/prize.svg" alt="Code" class="header-icon">
             <h2 class="header-title">Achievements</h2>
         </div>
@@ -1163,7 +1195,7 @@
             <span class="ball"></span>
         </div>
 
-        <div class="proyectos-header">
+        <div class="proyectos-header" id="proyectos-header">
             <img src="images/code.svg" alt="Code" class="header-icon">
             <h2 class="header-title">Proyects</h2>
         </div>
@@ -1189,14 +1221,18 @@
                     </div>
 
                     <p class="proyecto-descripcion">
-A project inspired by Google Drive. Allows uploading and downloading files to store in the cloud. Users can view current storage, used and available space, and add, edit, or delete files.                    </p>
+                        A project inspired by Google Drive. Allows uploading and downloading files to store in the
+                        cloud. Users can view current storage, used and available space, and add, edit, or delete files.
+                    </p>
 
                     <div class="botones">
-                        <button class="boton code" onclick="window.open('https://github.com/ManuelRuaEchalar/driveClone', '_blank')">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/driveClone', '_blank')">
                             <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
                             <span class="boton-text">Code</span>
                         </button>
-                        <button class="boton preview" onclick="window.open('https://cloud-it-two.vercel.app', '_blank')">
+                        <button class="boton preview"
+                            onclick="window.open('https://cloud-it-two.vercel.app', '_blank')">
                             <img src="images/ic_baseline-link.svg" alt="Link" class="boton-icon">
                             <span class="boton-text">Preview</span>
                         </button>
@@ -1224,10 +1260,13 @@ A project inspired by Google Drive. Allows uploading and downloading files to st
                     </div>
 
                     <p class="proyecto-descripcion">
-A simple game where the goal is to prevent the dove from leaving the screen, with speed increasing over time. The top three scores from any player are saved and displayed in the historical leaderboard. The server includes security measures to prevent cheating.                    </p>
+                        A simple game where the goal is to prevent the dove from leaving the screen, with speed
+                        increasing over time. The top three scores from any player are saved and displayed in the
+                        historical leaderboard. The server includes security measures to prevent cheating. </p>
 
                     <div class="botones">
-                        <button class="boton code" onclick="window.open('https://github.com/ManuelRuaEchalar/dove', '_blank')">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/dove', '_blank')">
                             <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
                             <span class="boton-text">Code</span>
                         </button>
@@ -1269,14 +1308,17 @@ A simple game where the goal is to prevent the dove from leaving the screen, wit
                     </div>
 
                     <p class="proyecto-descripcion">
-A simple web application to save notes about your favorite books. Implements a basic CRUD on the server, login and authentication. The client handles user requests and interactions.                    </p>
+                        A simple web application to save notes about your favorite books. Implements a basic CRUD on the
+                        server, login and authentication. The client handles user requests and interactions. </p>
 
                     <div class="botones">
-                        <button class="boton code" onclick="window.open('https://github.com/ManuelRuaEchalar/bookmarks-cliente', '_blank')">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/bookmarks-cliente', '_blank')">
                             <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
                             <span class="boton-text">Code</span>
                         </button>
-                        <button class="boton preview" onclick="window.open('https://fav-books-two.vercel.app/', '_blank')">
+                        <button class="boton preview"
+                            onclick="window.open('https://fav-books-two.vercel.app/', '_blank')">
                             <img src="images/ic_baseline-link.svg" alt="Link" class="boton-icon">
                             <span class="boton-text">Preview</span>
                         </button>
@@ -1315,11 +1357,13 @@ A simple web application to save notes about your favorite books. Implements a b
                     </div>
 
                     <p class="proyecto-descripcion">
-                        A mobile application to find the nearest garbage containers. It also includes mini-games to learn about recycling and an Info section with additional data on waste classification.
+                        A mobile application to find the nearest garbage containers. It also includes mini-games to
+                        learn about recycling and an Info section with additional data on waste classification.
                     </p>
 
                     <div class="botones">
-                        <button class="boton code" onclick="window.open('https://github.com/ManuelRuaEchalar/pruebaHojas/tree/main/Eco', '_blank')">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/pruebaHojas/tree/main/Eco', '_blank')">
                             <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
                             <span class="boton-text">Code</span>
                         </button>
@@ -1333,8 +1377,11 @@ A simple web application to save notes about your favorite books. Implements a b
             function scrollToExperiencia() {
                 document.getElementById('experiencia').scrollIntoView({ behavior: 'smooth' });
             }
+            function scrollToLogros() {
+                document.getElementById('logros-header').scrollIntoView({ behavior: 'smooth' });
+            }
             function scrollToProyectos() {
-                document.getElementById('proyectos').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('proyectos-header').scrollIntoView({ behavior: 'smooth' });
             }
             function sendEmail() {
                 window.open("https://mail.google.com/mail/u/0/?view=cm&fs=1&to=juanruaxo@gmail.com", "_blank");
