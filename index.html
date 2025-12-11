@@ -476,7 +476,34 @@
         }
 
         .etiqueta.flutter {
-            background: #027DFD;
+            background: #000000;
+        }
+
+        .etiqueta.vue {
+            background: #000000;
+        }
+
+        .etiqueta.prisma {
+            background: transparent;
+            border: 1px solid #000000;
+        }
+
+        .etiqueta.supabase {
+            background: #000000;
+        }
+
+        .etiqueta.docker {
+            background: #000000;
+        }
+
+        .etiqueta.aws {
+            background: transparent;
+            border: 1px solid #000000;
+        }
+
+        .etiqueta.nginx {
+            background: transparent;
+            border: 1px solid #000000;
         }
 
         .etiqueta-icon {
@@ -620,13 +647,14 @@
             position: relative;
             width: 100%;
             height: 100%;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .modal-slider-wrapper {
             display: flex;
             transition: transform 0.5s ease-in-out;
             height: 100%;
+            overflow: hidden;
         }
 
         .modal-slider-slide {
@@ -664,7 +692,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
             padding: 15px 20px;
@@ -672,11 +700,11 @@
             font-size: 24px;
             transition: background 0.3s ease;
             border-radius: 3px;
-            z-index: 2;
+            z-index: 1001;
         }
 
         .modal-nav:hover {
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .modal-nav.prev {
@@ -694,7 +722,7 @@
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 2;
+            z-index: 1001;
         }
 
         .modal-dot {
@@ -746,6 +774,12 @@
         }
 
         .etiqueta-text.react_router {
+            color: black;
+        }
+
+        .etiqueta-text.prisma,
+        .etiqueta-text.aws,
+        .etiqueta-text.nginx {
             color: black;
         }
 
@@ -1465,7 +1499,7 @@
                         </div>
                         <button class="slider-nav prev" onclick="moveSlide('incidentsSlider', -1)">‹</button>
                         <button class="slider-nav next" onclick="moveSlide('incidentsSlider', 1)">›</button>
-                        <button class="expand-btn" onclick="openModal()">⛶</button>
+                        <button class="expand-btn" onclick="openModal('incidentsSlider')">⛶</button>
                         <div class="slider-dots" id="incidentsSliderDots"></div>
                     </div>
                 </div>
@@ -1491,6 +1525,88 @@
                             onclick="window.open('https://github.com/ManuelRuaEchalar/city_incidents_mobile', '_blank')">
                             <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
                             <span class="boton-text">Code</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-proyecto">
+                <div class="image-container">
+                    <div class="slider-container">
+                        <div class="slider-wrapper" id="seguimientoSlider">
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/1_landing_page.png"
+                                    alt="Seguimiento Landing Page">
+                            </div>
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/2_public_repository.png"
+                                    alt="Seguimiento Public Repository">
+                            </div>
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/3_login.png" alt="Seguimiento Login">
+                            </div>
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/4_group_activities.png"
+                                    alt="Seguimiento Group Activities">
+                            </div>
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/4_professor_side_start.png"
+                                    alt="Seguimiento Professor Side">
+                            </div>
+                            <div class="slider-slide">
+                                <img src="images/seguimiento_de_proyectos_muck_ups/5_document_revision.png"
+                                    alt="Seguimiento Document Revision">
+                            </div>
+                        </div>
+                        <button class="slider-nav prev" onclick="moveSlide('seguimientoSlider', -1)">‹</button>
+                        <button class="slider-nav next" onclick="moveSlide('seguimientoSlider', 1)">›</button>
+                        <button class="expand-btn" onclick="openModal('seguimientoSlider')">⛶</button>
+                        <div class="slider-dots" id="seguimientoSliderDots"></div>
+                    </div>
+                </div>
+
+                <div class="proyecto-content">
+                    <h3 class="proyecto-titulo">USFX Thesis Tracking Platform</h3>
+
+                    <div class="etiquetas">
+                        <div class="etiqueta nextjs">
+                            <img src="images/nextJs.jpg" alt="Next.js" class="etiqueta-icon">
+                            <span class="etiqueta-text">Next.js</span>
+                        </div>
+                        <div class="etiqueta nest">
+                            <img src="images/nest.png" alt="NestJS" class="etiqueta-icon">
+                            <span class="etiqueta-text">NestJS</span>
+                        </div>
+                        <div class="etiqueta docker">
+                            <img src="images/docker.svg" alt="Docker" class="etiqueta-icon">
+                            <span class="etiqueta-text">Docker</span>
+                        </div>
+                        <div class="etiqueta aws">
+                            <img src="images/aws.svg" alt="AWS" class="etiqueta-icon">
+                            <span class="etiqueta-text aws">AWS</span>
+                        </div>
+                        <div class="etiqueta nginx">
+                            <img src="images/nginx.svg" alt="Nginx" class="etiqueta-icon">
+                            <span class="etiqueta-text nginx">Nginx</span>
+                        </div>
+                    </div>
+
+                    <p class="proyecto-descripcion">
+                        Platform for students to submit and track their thesis documents with professor feedback.
+                        Features version control, annotation system, comparison tools, and a public repository of
+                        approved projects for the USFX community.
+                    </p>
+
+                    <div class="botones">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/seguimiento-proyectos-segundo-parcial', '_blank')">
+                            <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
+                            <span class="boton-text">Code</span>
+                        </button>
+                        <button class="boton preview"
+                            onclick="window.open('https://seguimiento-de-proyectos-usfx.duckdns.org/', '_blank')">
+                            <img src="images/ic_baseline-link.svg" alt="Link" class="boton-icon">
+                            <span class="boton-text">Preview</span>
                         </button>
                     </div>
                 </div>
@@ -1666,6 +1782,96 @@
                 </div>
             </div>
 
+            <div class="card-proyecto">
+                <div class="image-container">
+                    <img src="images/incidents_web.png" alt="City Incidents Web" class="proyecto-image">
+                </div>
+
+                <div class="proyecto-content">
+                    <h3 class="proyecto-titulo">City Incidents Web Platform</h3>
+
+                    <div class="etiquetas">
+                        <div class="etiqueta vue">
+                            <img src="images/vue.svg" alt="Vue.js" class="etiqueta-icon">
+                            <span class="etiqueta-text">Vue.js</span>
+                        </div>
+                    </div>
+
+                    <p class="proyecto-descripcion">
+                        Web platform for viewing and managing urban incidents. Features a public map with geolocated
+                        incidents and city statistics. Includes an admin panel with full CRUD operations for incidents,
+                        cities, categories, and statuses. Only administrators can manage data.
+                    </p>
+
+                    <div class="botones">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/city_incidents_web', '_blank')">
+                            <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
+                            <span class="boton-text">Code</span>
+                        </button>
+                        <button class="boton preview"
+                            onclick="window.open('https://city-incidents-web.vercel.app/', '_blank')">
+                            <img src="images/ic_baseline-link.svg" alt="Link" class="boton-icon">
+                            <span class="boton-text">Preview</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-proyecto">
+                <div class="image-container">
+                    <div
+                        style="height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px;">
+                        <div style="text-align: center; color: white;">
+                            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                </path>
+                            </svg>
+                            <p
+                                style="margin-top: 15px; font-family: 'Brawler', serif; font-size: 18px; font-weight: 600;">
+                                API Service</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proyecto-content">
+                    <h3 class="proyecto-titulo">Backend Service for Incidents Reports</h3>
+
+                    <div class="etiquetas">
+                        <div class="etiqueta nest">
+                            <img src="images/nest.png" alt="NestJS" class="etiqueta-icon">
+                            <span class="etiqueta-text">NestJS</span>
+                        </div>
+                        <div class="etiqueta prisma">
+                            <img src="images/prisma.svg" alt="Prisma" class="etiqueta-icon">
+                            <span class="etiqueta-text prisma">Prisma</span>
+                        </div>
+                        <div class="etiqueta supabase">
+                            <img src="images/supabase.svg" alt="Supabase" class="etiqueta-icon">
+                            <span class="etiqueta-text">Supabase</span>
+                        </div>
+                    </div>
+
+                    <p class="proyecto-descripcion">
+                        RESTful API built with NestJS providing full CRUD operations for incidents, cities, categories,
+                        and statuses. Features JWT authentication with cookies, Prisma ORM for database management,
+                        PostgreSQL via Supabase, and Supabase Storage for incident photos.
+                    </p>
+
+                    <div class="botones">
+                        <button class="boton code"
+                            onclick="window.open('https://github.com/ManuelRuaEchalar/incidents_api', '_blank')">
+                            <img src="images/mdi_github.svg" alt="GitHub" class="boton-icon">
+                            <span class="boton-text">Code</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <!-- Image Modal -->
@@ -1816,12 +2022,13 @@
             // Initialize sliders on page load
             window.addEventListener('load', () => {
                 initSlider('incidentsSlider', 'incidentsSliderDots');
+                initSlider('seguimientoSlider', 'seguimientoSliderDots');
                 initModalSlider();
             });
 
             // Modal functionality
             let modalCurrentIndex = 0;
-            const modalTotalSlides = 6;
+            let modalTotalSlides = 6;
 
             function initModalSlider() {
                 const dotsContainer = document.getElementById('modalSliderDots');
@@ -1836,13 +2043,58 @@
                 }
             }
 
-            function openModal() {
+            function openModal(sliderId = 'incidentsSlider') {
                 const modal = document.getElementById('imageModal');
                 modal.classList.add('active');
 
                 // Sync with current slider position
-                if (sliders['incidentsSlider']) {
-                    modalCurrentIndex = sliders['incidentsSlider'].currentIndex;
+                if (sliders[sliderId]) {
+                    modalCurrentIndex = sliders[sliderId].currentIndex;
+                    modalTotalSlides = sliders[sliderId].totalSlides;
+
+                    // Update modal images based on slider
+                    const modalSlider = document.getElementById('modalSlider');
+                    const images = {
+                        'incidentsSlider': [
+                            'images/incidents_mockups/1_login.png',
+                            'images/incidents_mockups/2_home.png',
+                            'images/incidents_mockups/3_add_report.png',
+                            'images/incidents_mockups/4_home_reports.png',
+                            'images/incidents_mockups/5_my_reports.png',
+                            'images/incidents_mockups/6_profile.png'
+                        ],
+                        'seguimientoSlider': [
+                            'images/seguimiento_de_proyectos_muck_ups/1_landing_page.png',
+                            'images/seguimiento_de_proyectos_muck_ups/2_public_repository.png',
+                            'images/seguimiento_de_proyectos_muck_ups/3_login.png',
+                            'images/seguimiento_de_proyectos_muck_ups/4_group_activities.png',
+                            'images/seguimiento_de_proyectos_muck_ups/4_professor_side_start.png',
+                            'images/seguimiento_de_proyectos_muck_ups/5_document_revision.png'
+                        ]
+                    };
+
+                    // Update modal slider images
+                    const modalSlides = modalSlider.querySelectorAll('.modal-slider-slide');
+                    const sliderImages = images[sliderId] || images['incidentsSlider'];
+                    modalSlides.forEach((slide, index) => {
+                        const img = slide.querySelector('img');
+                        if (img && sliderImages[index]) {
+                            img.src = sliderImages[index];
+                        }
+                    });
+
+                    // Recreate dots for current slider
+                    const dotsContainer = document.getElementById('modalSliderDots');
+                    dotsContainer.innerHTML = ''; // Clear existing dots
+
+                    for (let i = 0; i < modalTotalSlides; i++) {
+                        const dot = document.createElement('div');
+                        dot.classList.add('modal-dot');
+                        if (i === modalCurrentIndex) dot.classList.add('active');
+                        dot.onclick = () => goToModalSlide(i);
+                        dotsContainer.appendChild(dot);
+                    }
+
                     updateModalSlider();
                 }
 
