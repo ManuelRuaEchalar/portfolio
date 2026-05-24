@@ -14,32 +14,32 @@ El pipeline de Despliegue Continuo (CD) está configurado usando **GitHub Action
 
 ## 2. Evidencias (Capturas de Pantalla)
 
-> **Nota:** Sustituye las imágenes de ejemplo por tus propias capturas de pantalla. Sube tus capturas a una carpeta `/images/evidencias/` o arrástralas directamente al editor de GitHub para que genere el enlace.
-
 ### A. Bucket S3 configurado para hosting web
-![Bucket S3](Remplaza_esto_con_tu_imagen_S3.png)
+![Bucket S3](./pruebas/bucketParaSitiosWebEstaticos.png)
 
 ### B. Secretos y variables configurados en GitHub
-![GitHub Secrets](Remplaza_esto_con_tu_imagen_Secrets.png)
+![GitHub Secrets](./pruebas/SecretosDeGithubConfigurados.png)
 
 ### C. Historial de ejecuciones en la pestaña Actions
-*Debe mostrar un fallo intencional corregido y un éxito.*
-![Acciones GitHub](Remplaza_esto_con_tu_imagen_Actions.png)
+*Historial mostrando los despliegues ejecutados en el flujo de trabajo de GitHub Actions.*
+![Acciones GitHub](./pruebas/DeployEnGithubActions.png)
 
 ### D. Distribución de CloudFront configurada (OAC)
-![CloudFront Config](Remplaza_esto_con_tu_imagen_CloudFront.png)
+![CloudFront Config](./pruebas/CloudFront.png)
 
 ### E. El sitio web funcionando (URLs públicas)
-- **URL S3 (Restringida por OAC o Pública temporalmente):** [Enlace o Captura]
-- **URL CloudFront (HTTPS):** [Enlace o Captura]
-![Sitio Web](Remplaza_esto_con_tu_imagen_Sitio_Web.png)
+- **URL S3:** [http://mi-portafolio-juan-2026.s3-website-us-east-1.amazonaws.com](http://mi-portafolio-juan-2026.s3-website-us-east-1.amazonaws.com)
+![Sitio Web](./pruebas/SitioEnVivo.png)
+
+### F. Código de Despliegue (Deploy Workflow)
+![Código Deploy](./pruebas/codigoDeploy.png)
 
 ---
 
 ## 3. URLs de Acceso
 
-- **URL Pública (CloudFront HTTPS):** `https://REEMPLAZA-CON-TU-ID.cloudfront.net`
-- **URL del Repositorio:** `https://github.com/REEMPLAZA-CON-TU-USUARIO/portfolio`
+- **URL Pública (S3/CloudFront):** `http://mi-portafolio-juan-2026.s3-website-us-east-1.amazonaws.com`
+- **URL del Repositorio:** `https://github.com/ManuelRuaEchalar/portfolio`
 
 ---
 
